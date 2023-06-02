@@ -1,4 +1,24 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const API_KEY = process.env.API_KEY;
 
-module.exports = nextConfig
+const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/old-post/:path*",
+        destination: "/new-post/:path*",
+        permanent: false,
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/api/movies",
+        destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
+      },
+    ];
+  },
+};
+
+module.exports = nextConfig;
