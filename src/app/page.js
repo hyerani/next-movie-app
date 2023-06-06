@@ -1,21 +1,13 @@
 "use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-// import { handleClick } from "./util";
 
-async function getData() {
+export async function getData() {
   const { results } = await (
-    await fetch(`http://localhost:3000/api/movies`)
+    await fetch(`http://localhost:3000/api/movies`, { cache: "no-store" })
   ).json();
 
   return results;
 }
-
-// const GetRouter = (id) => {
-//   const router = useRouter;
-//   return router.push(`/movies/${id}`);
-// };
-// Warning: An error occurred during hydration. The server HTML was replaced with client content in <#document>.
 
 export default async function Home() {
   const data = await getData();
@@ -25,11 +17,8 @@ export default async function Home() {
       <title>Home | Next Movies</title>
       {data?.map((movie) => (
         <div key={movie.id}>
-          <Link href={`movies/${movie.id}`}>
-            <div
-              // onClick={() => GetRouter(movie.id)}
-              className="movie"
-            >
+          <Link href={`/movies/${movie.id}`}>
+            <div className="movie">
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               />
