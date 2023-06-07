@@ -17,7 +17,7 @@ export default async function Home() {
       <title>Home | Next Movies</title>
       {data?.map((movie) => (
         <div key={movie.id}>
-          <Link href={`/movies/${movie.id}`}>
+          <Link href={`/movies/${movie.original_title}/${movie.id}`}>
             <div className="movie">
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
