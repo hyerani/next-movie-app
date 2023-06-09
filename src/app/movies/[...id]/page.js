@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 export default function Detail() {
   const params = useParams();
   const url = params.id.split("/");
-  console.log(url);
+  const [title, id] = url;
 
-  return <h4>{url[1]}</h4>;
+  return <h4>{title}</h4>;
 }
