@@ -1,1 +1,1 @@
-# next-movie-app/
+# next-movie-app
